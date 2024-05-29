@@ -1,0 +1,28 @@
+describe('Login Test Suite',function()
+{
+    it('Valid Credentials', function()
+    {
+        cy.visit('https://automationexercise.com/login')
+        cy.get('input[data-qa="login-email"]').type('testuser1@gamil.com')
+        cy.get('input[data-qa="login-password"]').type('TestUser')
+        cy.get('[data-qa="login-button"]').click()
+        cy.get('a > img').should('be.visible')
+        cy.get('.shop-menu > .nav > :nth-child(4)').click()
+    })
+    it('Invalid Email', function()
+    {
+        cy.visit('https://automationexercise.com/login')
+        cy.get('input[data-qa="login-email"]').type('abcxyz@gamil.com')
+        cy.get('input[data-qa="login-password"]').type('TestUser')
+        cy.get('[data-qa="login-button"]').click()
+        cy.get('.login-form > form > p').should('have.text','Your email or password is incorrect!')   
+    })
+    it('Invalid Password', function()
+    {
+        cy.visit('https://automationexercise.com/login')
+        cy.get('input[data-qa="login-email"]').type('testuser1@gamil.com')
+        cy.get('input[data-qa="login-password"]').type('TestUsers123@')
+        cy.get('[data-qa="login-button"]').click()
+        cy.get('.login-form > form > p').should('have.text','Your email or password is incorrect!')   
+    })
+})
