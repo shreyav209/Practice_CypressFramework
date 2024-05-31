@@ -1,20 +1,43 @@
-describe('Login Test Suite',function()
+describe('Form Test Suite',function()
 {
-    const veg ='Brocolli - 1 Kg'
-    const password ='secret_sauce'
-    const product =['Winter Top','Full Sleeves Top Cherry - Pink']
-    it('Valid Credentials', function()
+    it('Validate Form', function()
     {
-        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
-        cy.wait(2000)
+        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.get('.form-group input[name="name"]').type('Raha')
+        cy.get(':nth-child(2) > .form-control').type('raha@gmail.com')
+        cy.get('#exampleInputPassword1').type('Raha')
+        cy.get('#exampleFormControlSelect1').select('Female')
+        cy.get('#inlineRadio2').click()
+        cy.get('input[name="bday"]').type('2001-05-24')
+        cy.get('input[value="Submit"]').click()
+        cy.get('.alert').contains('Success! The Form has been submitted successfully!.')
+    })
+})
+describe.only('Name ', () => {
 
-        cy.get('.products').find('.product').each(($el, index, $list) => {
- 
-            const textVeg=$el.find('h4.product-name').text()
-            if(textVeg.includes('Cashews'))
-            {
-            $el.find('button').click()
-            }
-            })
-     })
+    it('Validate Name', function()
+    {
+        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.get('.form-group input[name="name"]').type('X')
+        cy.get(':nth-child(2) > .form-control').type('raha@gmail.com')
+        cy.get('#exampleInputPassword1').type('Raha')
+        cy.get('#exampleFormControlSelect1').select('Female')
+        cy.get('#inlineRadio2').click()
+        cy.get('input[name="bday"]').type('2001-05-24')
+        cy.get('input[value="Submit"]').click()
+        cy.get(':nth-child(1) > .alert').contains('Name should be at least 2 characters')
+    })
+    it.only('Validate Name field is empty' , function()
+    {
+        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.get('.form-group input[name="name"]')
+        cy.get(':nth-child(2) > .form-control').type('raha@gmail.com')
+        cy.get('#exampleInputPassword1').type('Raha')
+        cy.get('#exampleFormControlSelect1').select('Female')
+        cy.get('#inlineRadio2').click()
+        cy.get('input[name="bday"]').type('2001-05-24')
+        cy.get('input[value="Submit"]').click()
+        cy.get('.alert.alert-danger').contains('Name is required')
+    })
+
 })
