@@ -1,11 +1,11 @@
 
 describe('Product', function()
 {
-    const product = Brocolli - 1 Kg
+    const product = 'Brocolli - 1 Kg'
     const products = ['Cucumber - 1 Kg','Brocolli - 1 Kg','Tomato - 1 Kg']
     const country ='India'
 
-    it('Add a pne product to cart', function()
+    it('Add a one product to cart', function()
     {
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         cy.get('.search-keyword').type(product)
@@ -31,7 +31,7 @@ describe('Product', function()
 
 
 
-    it('Add a multiple product to cart', function()
+    it('Add multiple product to cart', function()
     {
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         products.forEach((desiredproduct) =>
